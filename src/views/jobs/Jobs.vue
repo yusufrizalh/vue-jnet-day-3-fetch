@@ -11,13 +11,15 @@
 export default {
   data() {
     return {
-      jobs: [
-        { id: 1, title: "UI/UX Designer", details: "Lorem ipsum..." },
-        { id: 2, title: "Vue Developer", details: "Lorem ipsum..." },
-        { id: 3, title: "Database Admin", details: "Lorem ipsum..." },
-        { id: 4, title: "Quality Assurance", details: "Lorem ipsum..." },
-      ],
+      jobs: [],
     };
+  },
+  // lifecycle hooks: mounted
+  mounted() {
+    fetch("http://localhost:8000/jobs")
+      .then((response) => response.json())
+      .then((data) => (this.jobs = data))
+      .catch((error) => console.log(error.message));
   },
 };
 </script>
